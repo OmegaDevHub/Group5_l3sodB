@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SIMS Login</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="auth-body">
+
+<div class="auth-card">
+
+<div class="brand">
+  <img src="images/logo.png" class="logo">
+    <!-- <img src="images/logo.png"> -->
+    <h1>SIMS</h1>
+    <h4>|</h4>
+    <p>Stock Inventory Management System</p>
+  </div>
+  <e>
+<h2>Sign In</h2><hr>
+</e>
+<label><i class="fa fa-envelope"></i> Email Address</label>
+<input id="lemail" type="email" placeholder="Enter your email">
+
+<label><i class="fa fa-lock"></i> Password</label>
+<input id="lpass" type="password" placeholder="Enter your password">
+
+<button onclick="login()">Login</button>
+<p>________________________________________</p>
+<article>
+<p id="lmsg">Don't have an account?</p>
+<a href="register.html">Register</a>
+</article>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
