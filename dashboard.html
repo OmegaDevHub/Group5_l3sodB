@@ -46,11 +46,11 @@
 <button onclick="toggleForm()">Add Product</button>
 
 <div id="pform" class="hidden">
-<input id="pname" placeholder="Product Name">
-<input id="pcat" placeholder="Category">
-<input id="pqty" type="number" placeholder="Quantity">
-<input id="pprice" type="number" placeholder="Price">
-<button onclick="addProduct()">Save</button>
+<input id="pname" placeholder="Product Name" required>
+<input id="pcat" placeholder="Category" required>
+<input id="pqty" type="number" placeholder="Quantity" required>
+<input id="pprice" type="number" placeholder="Price" required>
+<button id="addBtn" onclick="addProduct()">Save</button>
 </div>
  <div class="omega">
 <table id="productTable">
@@ -58,7 +58,7 @@
     
 <tr>
     <e id="productSection" class="hidden">
-    <h1>Product</h1>
+    <h1>PRODUCT</h1>
         <input type="search" placeholder="🔍search Products...." id="searchInput">
     </e>
 <th>Product ID</th><th>Product Name</th><th>Category</th>

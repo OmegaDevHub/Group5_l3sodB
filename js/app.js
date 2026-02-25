@@ -35,21 +35,83 @@ loadProducts()
 function getP(){return JSON.parse(localStorage.getItem("products"))||[]}
 function saveP(p){localStorage.setItem("products",JSON.stringify(p))}
 
-function toggleForm(){pform.classList.toggle("hidden")}
+function toggleForm(){
+    pform.classList.toggle("hidden");
+    // optional: reset form and mode
+    pname.value = "";
+    pcat.value  = "";
+    pqty.value  = "";
+    pprice.value= "";
+    editingId = null;
+    document.querySelector("#addBtn").innerText = "Add Product";
+}
+
+let editingId = null;
 
 function addProduct(){
-let n=pname.value,c=pcat.value,q=Number(pqty.value),pr=Number(pprice.value)
-if(!n||!c||q<0||isNaN(pr))return
-let p=getP()
-p.push({id:"P"+Date.now(),name:n,cat:c,qty:q,price:pr})
-saveP(p)
-loadProducts()
+  let n = pname.value;
+  let c = pcat.value;
+  let q = Number(pqty.value);
+  let pr = Number(pprice.value);
+
+  if(!n || !c || q < 0 || isNaN(pr)) return;
+
+  let p = getP();
+
+  if(editingId){ 
+    // UPDATE MODE
+    let product = p.find(x => x.id === editingId);
+    if(product){
+      product.name  = n;
+      product.cat   = c;
+      product.qty   = q;
+      product.price = pr;
+    }
+    editingId = null;
+    document.querySelector("#addBtn").innerText = "Add Product";
+
+  }else{
+    // ADD MODE
+    p.push({
+      id:"P"+Date.now(),
+      name:n,
+      cat:c,
+      qty:q,
+      price:pr
+    });
+  }
+
+  saveP(p);
+  loadProducts();
+
+  pname.value = "";
+  pcat.value  = "";
+  pqty.value  = "";
+  pprice.value= "";
+
+  // hide form after submit
+  pform.classList.add("hidden");
 }
 
 function delProduct(id){
 let p=getP().filter(x=>x.id!==id)
 saveP(p)
 loadProducts()
+}
+function editProduct(id){
+  let p = getP();
+  let product = p.find(x => x.id === id);
+  if(!product) return;
+
+  pname.value  = product.name;
+  pcat.value   = product.cat;
+  pqty.value   = product.qty;
+  pprice.value = product.price;
+
+  editingId = id;
+
+  document.querySelector("#addBtn").innerText = "Update Product";
+  pform.classList.remove("hidden");
 }
 
 function loadProducts(){
@@ -93,6 +155,11 @@ function loadProducts(){
           <td>
             <button class="delBtn" onclick="delProduct('${x.id}')">
               Delete
+            </button>
+          </td>
+          <td>
+            <button class="editBtn" onclick="editProduct('${x.id}')">
+              Edit
             </button>
           </td>
         </tr>

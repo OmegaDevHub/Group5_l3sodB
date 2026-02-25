@@ -170,7 +170,6 @@ th,td{padding:12px;border-bottom:1px solid #ddd}
     background-color: white;
   }
   e{
-    display: flex;
     align-items: center;
     justify-content: space-between;
     text-align: center;
@@ -183,4 +182,11 @@ th,td{padding:12px;border-bottom:1px solid #ddd}
     padding: 18px;
     background: linear-gradient(red,green,rgb(0, 13, 255))
   }
-  
+  .editbtn{
+     background:#ef4444;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+  }
